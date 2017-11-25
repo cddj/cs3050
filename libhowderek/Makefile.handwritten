@@ -1,0 +1,7 @@
+main:
+	gcc -Ofast howderek.c howderek_hashmap.c howderek_array.c howderek_kv.c main.c
+
+testgen:
+	gcc -Ofast generate_test_file.c -o testgen
+
+default: main
