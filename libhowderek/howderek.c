@@ -11,7 +11,7 @@
 
 howderek_log_level_t howderek_log(howderek_log_level_t level, const char* format, ...) {
 
-  static howderek_log_level_t logLevel = HOWDEREK_LOG_WARN;
+  static howderek_log_level_t logLevel = HOWDEREK_LOG_INFO;
   char* prefix;
   switch (level) {
     case HOWDEREK_LOG_SILENT:
@@ -102,7 +102,6 @@ struct howderek_configuration_t howderek_parse_command_line_options(int argc, ch
   struct howderek_configuration_t config;
 
   config.logLevel = HOWDEREK_LOG_WARN;
-  howderek_set_log_level(HOWDEREK_LOG_WARN);
 
   int flagOffset = 0;
 

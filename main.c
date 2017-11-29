@@ -23,5 +23,9 @@
 
 
 int main(int argc, char** argv) {
+  struct howderek_configuration_t config = howderek_parse_command_line_options(argc, argv);
+  howderek_log(HOWDEREK_LOG_INFO, "Loading...");
+  struct world world;
+  load_world(&world, config.in);
   return 0;
 }

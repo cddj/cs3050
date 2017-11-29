@@ -4,3 +4,5 @@
  *         constraints of the assignment. Robots are completely aware of the
  *         world, including the entire graph and the other robots.
  */
+
+#pragma once
