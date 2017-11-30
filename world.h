@@ -6,3 +6,8 @@
  */
 
 #pragma once
+
+struct world {
+    struct howderek_graph graph;
+    struct robot robots[NUMBER_OF_ROBOTS];
+};

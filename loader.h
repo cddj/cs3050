@@ -11,12 +11,6 @@
 
 #define NUMBER_OF_ROBOTS 2
 
-struct world {
-    struct howderek_graph graph;
-    struct robot robots[NUMBER_OF_ROBOTS];
-};
-
-
 /**
  * Create a heap
  *
