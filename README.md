@@ -1,11 +1,14 @@
 # cs3050
 CMP_SCI_3050 Final Project - Navigate two robots to points in a maze, avoiding collisions
 
-## Running and Understanding Output
+## Running and Interpreting Output
 
-The program takes a single text file as a commmand line argument, which contains the world. 
+The program takes a single text file as a commmand line argument, which contains the world. The program will output the map of the world to the console after every step a robot takes. The path of the first robot will be denoted by A's and the path of the second robot will be denoted by B's.
 
 ### Error Messages 
+
+Any error encountered by the program will be outputted to the console with an accompanying error message. The program utilizes errno.h from the C standard library for some of these encountered errors. Others are handled by libhowderek.
+
 ## Before you begin
 
 First, you need to make sure you have the necesarry working C development environment

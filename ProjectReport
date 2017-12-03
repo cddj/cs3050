@@ -18,8 +18,9 @@ General Overview:
 	Our original plan, to run each robot consecutively, could possibly get stuck if the robots had a specific orientation where one would block the other entirely. To solve this, we decided to instead /* Explanation of current plan */
 
 Specific Algorithms:
-
-	A* --- O(n), where n is the length of the path
+	
+	Loading the world (Creating the graph):  
+	Finding the Path (A*): O(n), where n is the length of the path
 
 Division of Project/Team Efforts: 
 
