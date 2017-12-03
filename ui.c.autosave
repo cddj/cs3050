@@ -18,7 +18,8 @@
  *
  * */
 
-void printPath()
+void printPath();
+
 int main(void){
 
     return 0;

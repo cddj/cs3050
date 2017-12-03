@@ -1,0 +1,44 @@
+CMP_SC 3050 Final Project: Project Report
+
+Members: Christian Cmehil-Warn
+		 Derek Howard
+		 Jack Wilke
+		 Jonah Zukosky
+
+
+
+General Overview:
+
+	Our goal was to take an input of a text file displaying a world with 2 robots, 2 startpoints, and 2 endpoints, with each startpoint and endpoint corresponding to one of the robots. We then must move these robots from startpoint to endpoint while avoiding walls and eachother.
+
+	Our initial idea was to take the input file, load it into a graph, and run a Breadth First Search on said graph to determine the fastest path from startpoint to endpoint of each robot, one after another. This however, had a couple problems that made us feel that we could be doing more. To begin with, it could be done much more efficiently, and with the knowledge that we could receive extra credit for the fastest solution, we decided to drop our current plan. Not only did we decide to make an algorithmic change in favor of time complexity improval, we also had to make a strategic change, as our approach was not necessarily correct in all instances.
+
+	While a Breadth First Search would work, we wanted to go faster. Breadth First Search has a time complexity of O(|V|+|E|), which can be improved upon. To do this, we chose to implement A*, a guided version of Breadth First Search. With A*, our worst case, using a constant heuristic, will run in the same amount of time as Breadth First Search ( O(|V|+|E|) ), but in the optimal case, using the optimal heuristic, A* will run in O(n) time (space complexity is the same), where n is the length of the solution path. This is a marked improvement over simply running a Breadth First Search. 
+
+	Our original plan, to run each robot consecutively, could possibly get stuck if the robots had a specific orientation where one would block the other entirely. To solve this, we decided to instead /* Explanation of current plan */
+
+Division of Project/Team Efforts: 
+
+	We chose to divide our project fittingly into 4 different sections which would handle four different main components of the requirements.These sections were:
+				1.world.c
+				2.robot.c
+				3.loader.c
+				4.ui.c
+	This worked out optimally for our group, as we had 4 members. Christian and Derek primarily worked on robot.c and world.c respectively, with some overlap between the two as necessary. Jack and Jonah took the responsibilities of loader.c and ui.c, again with some overlap. These were the main divisions.
+
+		world.c---
+			World.c's primary purpose was to contain the world in which the robots live. Wraps a howderek_graph with
+          	functions accessible to robots to ensure they don't violate the
+          	constraints of the assignment. Robots are completely aware of the
+          	world, including the entire graph and the other robots. In short, world.c gives the robots the constraints that they must follow.
+        robot.c---
+        	Robot.c primarily works in conjunction with world.c, explaining the division of the two together. This is the file that contains the actual implementation of the algorithm (A*), moving the robots around the world, both communicating with the world and other robots in order to ensure that robots follow all constraints, specifcally those concerning walls and collision with other robots.
+        loader.c---
+        	Loader.c is the start of the program, it takes in the text file containing the given world and robots, and converts this data into something that the algorithm can work with to find a path from startpoint to endpoint. In this case, that is a combination of a graph and a hashmap. Each node of the graph represents a single space in the text file, with attributes of the node representing if a space is taken, whether that be by a wall, another robot, or the endpoint. The first two of these being constraints placed on the robot, the thrid being the goal. 
+        ui.c---
+        	Ui.c is the end of the program, and is only utilized after the algorithm runs and the program is finished. It takes this graph and subsequent paths of the robots, and outputs them step by step to the console on the original provided map. It handles the visual representation of the paths and how they are presented to the user.
+
+Extra Notes:
+	
+	This project was aided by the libraries created by Derek, which we implemented heavily to aid in the creation of our graph, hashmap, and other general functionalities.
+
