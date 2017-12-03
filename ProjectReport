@@ -17,6 +17,10 @@ General Overview:
 
 	Our original plan, to run each robot consecutively, could possibly get stuck if the robots had a specific orientation where one would block the other entirely. To solve this, we decided to instead /* Explanation of current plan */
 
+Specific Algorithms:
+
+	A* --- O(n), where n is the length of the path
+
 Division of Project/Team Efforts: 
 
 	We chose to divide our project fittingly into 4 different sections which would handle four different main components of the requirements. These sections were:
