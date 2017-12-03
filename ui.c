@@ -2,13 +2,14 @@
  *  \brief Handles user interaction with the program. Displays a world.
  */
 
-<<<<<<< Updated upstream
 #include <stdio.h>
 #include <stdlib.h>
 #include "ui.h"
 #include "libhowderek/howderek.h"
 #include "libhowderek/howderek_hashmap.h"
 #include "libhowderek/howderek_graph.h"
+
+
 
 
 /*!
@@ -18,9 +19,13 @@
  * */
 void printPath();
 
-=======
->>>>>>> Stashed changes
-void renderer(struct world w) {
+
+int main(void){
+
+    return 0;
+}
+
+void renderer(struct world* w) {
   // Not yet implemented.
   return;
 }
