@@ -28,7 +28,8 @@ struct world_pathfinding_data
 {
     size_t distance;
     double weightedDistance;
-    struct howderek_graph_vertex* next;
+    struct howderek_graph_vertex* v;
+    struct world_pathfinding_data* next;
 };
 
 typedef enum {
