@@ -11,7 +11,7 @@ General Overview:
 
 	Our goal was to take an input of a text file displaying a world with 2 robots, 2 startpoints, and 2 endpoints, with each startpoint and endpoint corresponding to one of the robots. We then must move these robots from startpoint to endpoint while avoiding walls and eachother.
 
-	Our initial idea was to take the input file, load it into a graph, and run a Breadth First Search on said graph to determine the fastest path from startpoint to endpoint of each robot, one after another. This however, had a couple problems that made us feel that we could be doing more. To begin with, it could be done much more efficiently, and with the knowledge that we could receive extra credit for the fastest solution, we decided to drop our current plan. Not only did we decide to make an algorithmic change in favor of time complexity improval, we also had to make a strategic change, as our approach was not necessarily correct in all instances.
+	Our initial idea was to take the input file, load it into a graph, and run a Breadth First Search on said graph to determine the fastest path from startpoint to endpoint of each robot, one after another. This however, had a couple problems that made us feel that we could be doing more. To begin with, it could be done much more efficiently, and with the knowledge that we could receive extra credit for the fastest solution, we decided to drop our current plan. Not only did we decide to make an algorithmic change in favor of time complexity improvement, we also had to make a strategic change, as our approach was not necessarily correct in all instances.
 
 	While a Breadth First Search would work, we wanted to go faster. Breadth First Search has a time complexity of O(|V|+|E|), which can be improved upon. To do this, we chose to implement A*, a guided version of Breadth First Search. With A*, our worst case, using a constant heuristic, will run in the same amount of time as Breadth First Search ( O(|V|+|E|) ), but in the optimal case, using the optimal heuristic, A* will run in O(n) time (space complexity is the same), where n is the length of the solution path. This is a marked improvement over simply running a Breadth First Search. 
 
@@ -19,7 +19,7 @@ General Overview:
 
 Division of Project/Team Efforts: 
 
-	We chose to divide our project fittingly into 4 different sections which would handle four different main components of the requirements.These sections were:
+	We chose to divide our project fittingly into 4 different sections which would handle four different main components of the requirements. These sections were:
 				1.world.c
 				2.robot.c
 				3.loader.c
