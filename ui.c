@@ -10,16 +10,14 @@
 #include "libhowderek/howderek_graph.h"
 
 
-
-
 /*!
  *
  *  1. Print to console the steps taken by the robots in the world. One by one.
  *
  * */
+void printPath();
 
-void printPath()
-int main(void){
-
-    return 0;
+void renderer(struct world w) {
+  // Not yet implemented.
+  return;
 }

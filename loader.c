@@ -4,7 +4,10 @@
 
 #include <errno.h>
 #include "loader.h"
+#include "world.h"
 
-int load_world(struct world* theWorld, FILE* file) {
-  return ENOSYS; // Not yet implemented
+struct world* load_world(FILE* file) {
+  struct world* w = malloc(sizeof(struct world));
+  // Load everything into w here.
+  return w;
 }
