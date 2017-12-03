@@ -2,6 +2,7 @@
  *  \brief Handles user interaction with the program. Displays a world.
  */
 
+<<<<<<< Updated upstream
 #include <stdio.h>
 #include <stdlib.h>
 #include "ui.h"
@@ -17,6 +18,8 @@
  * */
 void printPath();
 
+=======
+>>>>>>> Stashed changes
 void renderer(struct world w) {
   // Not yet implemented.
   return;
