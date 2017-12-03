@@ -1,6 +1,11 @@
 # cs3050
 CMP_SCI_3050 Final Project - Navigate two robots to points in a maze, avoiding collisions
 
+## Running and Understanding Output
+
+The program takes a single text file as a commmand line argument, which contains the world. 
+
+### Error Messages 
 ## Before you begin
 
 First, you need to make sure you have the necesarry working C development environment

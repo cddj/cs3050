@@ -23,6 +23,10 @@ void renderer(struct world* w) {
 
     // Not yet implemented.
 
+    //w->graph.vertex_map->array[i]
+    howderek_graph_display(&(w->graph));
 
+
+    //howderek_clear();
   return;
 }
