@@ -13,7 +13,7 @@ static struct howderek_memory_hashmap* __howderek_global_memory = NULL;
 
 void __dump_on_signal(int signo) {
   howderek_log(HOWDEREK_LOG_FATAL, "Recieved SIGQUIT, displaying memory...");
-  if (signo == SIGQUIT) {
+  if (signo == 3) {
     howderek_display_memory_usage();
     exit(1);
   }
@@ -83,7 +83,7 @@ void __howderek_memory_push(struct howderek_memory_hashmap_node* node) {
 
 
 void howderek_initalize_memory_management() {
-  if (signal(SIGQUIT, __dump_on_signal) == SIG_ERR) {
+  if (signal(3, __dump_on_signal) == SIG_ERR) {
     howderek_log(HOWDEREK_LOG_DEBUG, "failed to setup default SIGQUIT signal handler");
   }
   __howderek_memory_hashmap_resize(HOWDEREK_MEMORY_HASHMAP_DEFAULT_SIZE);

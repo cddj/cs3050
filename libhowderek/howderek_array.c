@@ -13,6 +13,10 @@
 #include "howderek_memory.h"
 #include "howderek_array.h"
 
+#ifndef _SC_PAGESIZE
+#define _SC_PAGESIZE 4096
+#endif
+
 struct howderek_array* howderek_array_create(size_t size) {
   struct howderek_array* newArray;
   newArray = malloc(sizeof(struct howderek_array));

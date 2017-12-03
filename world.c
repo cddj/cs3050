@@ -4,3 +4,14 @@
  *         constraints of the assignment. Robots are completely aware of the
  *         world, including the entire graph and the other robots.
  */
+
+const char* DIRECTION_STRINGS[] = {
+  "N ",
+  "NE",
+  "E ",
+  "SE",
+  "S ",
+  "SW",
+  "W ",
+  "NW"
+};
