@@ -42,17 +42,6 @@ typedef enum {
   NW
 } direction_t;
 
-const char* DIRECTION_STRINGS[2] = {
-  "N ",
-  "NE",
-  "E ",
-  "SE",
-  "S ",
-  "SW",
-  "W ",
-  "NW"
-};
-
 /**
  * Create a world
  *

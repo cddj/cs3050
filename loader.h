@@ -12,8 +12,9 @@
 #define NUMBER_OF_ROBOTS 2
 
 /**
- * Create a heap
+ * Load a world from a file
  *
- * \param size      number of elements it should hold by default.
+ * \param file    the file to load
+ * \return        the world created
  */
-int load_world(struct world* theWorld, FILE* file);
+struct world* load_world(FILE* file);
