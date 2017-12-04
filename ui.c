@@ -2,6 +2,7 @@
  *  \brief Handles user interaction with the program. Displays a world.
  */
 
+<<<<<<< Updated upstream
 #include <stdio.h>
 #include <stdlib.h>
 #include "ui.h"
@@ -57,5 +58,9 @@ void renderer(struct world* w) {
 
     //Clears space inbetween, if I am to believe what Derek says
     howderek_clear();
+=======
+void renderer(struct world w) {
+  // Not yet implemented.
+>>>>>>> Stashed changes
   return;
 }

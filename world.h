@@ -14,15 +14,17 @@
 #define NUMBER_OF_ROBOTS 2
 
 struct world {
-    struct howderek_graph graph;
-    struct howderek_hashmap map;
+    struct howderek_graph* graph;
     struct robot robots[NUMBER_OF_ROBOTS];
 };
 
-struct position {
-    uint32_t x;
-    uint32_t y;
-};
+typedef union {
+  struct {
+      uint32_t x;
+      uint32_t y;
+  } coordinates;
+  uint64_t bits;
+} position_t;
 
 struct world_pathfinding_data
 {
@@ -49,7 +51,7 @@ typedef enum {
  *
  * \return            all of creation (the world)
  */
-struct world* world_let_there_be_light();
+struct world* world_let_there_be_light(size_t size);
 
 /**
  * Calulate a new position given a distance and direction
@@ -60,9 +62,9 @@ struct world* world_let_there_be_light();
  *
  * \return            the calculated position
  */
-struct position* world_line_from(struct position* starting,
-                                 int64_t distance,
-                                 direction_t direction);
+position_t world_line_from(position_t starting,
+                                int64_t distance,
+                                direction_t direction);
 
 
 /**
@@ -74,7 +76,7 @@ struct position* world_line_from(struct position* starting,
  * \return            vertex at that position or NULL
  */
 struct howderek_graph_vertex* world_at_position(struct world* w,
-                                                struct position pos);
+                                                position_t pos);
 
 /**
  * Add a space that a robot can reach in the world. Automaticall connects to
@@ -87,7 +89,7 @@ struct howderek_graph_vertex* world_at_position(struct world* w,
  * \return            the vertex created
  */
 struct howderek_graph_vertex* world_add(struct world* w,
-                                        struct position pos);
+                                        position_t pos);
 
 
 /**
@@ -99,7 +101,7 @@ struct howderek_graph_vertex* world_add(struct world* w,
  * \return           1 if successful, 0 if failed
  */
 int world_remove(struct world* w,
-                 struct position pos);
+                 position_t pos);
 
 /**
  * Clone a world
@@ -108,7 +110,7 @@ int world_remove(struct world* w,
  *
  * \return            the clone of the world
  */
-struct world* world_clone(struct world* w, struct position pos);
+struct world* world_clone(struct world* w, position_t pos);
 
 
 /**

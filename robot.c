@@ -92,6 +92,5 @@ struct world_pathfinding_data* find_distance(struct howderek_graph g, struct how
     }
 
     return NULL;
-
 }
 
