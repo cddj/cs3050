@@ -41,12 +41,17 @@ int8_t __howderek_graph_sum_compare(howderek_array_value_t left, howderek_array_
 
 int __calc_heuristic(struct howderek_graph_vertex* v1, struct howderek_graph_vertex* goal)
 {
-//   return max(abs(v1->data->x - goal->data->x), abs(v1->data->y - goal->data->y));
+   position_t v1Pos = (position_t) v1 ->data;
+   position_t goalPos = (position_t) goal -> data;
+   return max(abs(v1Pos.coordinates.x - goalPos.coordinates.x), abs(v1Pos.coordinates.y - goalPos.coordinates.y));
      return 0;
 }
 
-int __is_goal(struct howderek_graph_vertex* start_vertex, struct howderek_graph_vertex* goal)
+int __is_goal(struct howderek_graph_vertex* v1, struct howderek_graph_vertex* goal)
 {
+    position_t v1Pos = (position_t) v1 ->data;
+    position_t goalPos = (position_t) goal -> data;
+    if(v1Pos.coordinates.x == goalPos.coordinates.x && v1Pos.coordinates.y == goalPos.coordinates.y)
     return 0;
 }
 
