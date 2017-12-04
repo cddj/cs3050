@@ -43,8 +43,18 @@ int __calc_heuristic(struct howderek_graph_vertex* v1, struct howderek_graph_ver
 {
    position_t* v1Pos = v1->data;
    position_t* goalPos = goal->data;
-   return max(abs(v1Pos->coordinates.x - goalPos->coordinates.x), abs(v1Pos->coordinates.y - goalPos->coordinates.y));
-     return 0;
+   int64_t v1x = v1Pos->coordinates.x;
+   int64_t v1y = v1Pos->coordinates.y;
+   int64_t goalx = goalPos->coordinates.x;
+   int64_t goaly = goalPos->coordinates.y;
+   if(llabs(v1x - goalx) > llabs(v1y - goaly))
+   {
+        return llabs(v1x - goalx);
+   }
+   else
+   {
+       return llabs(v1y - goaly);
+   }
 }
 
 int __is_goal(struct howderek_graph_vertex* v1, struct howderek_graph_vertex* goal)
@@ -52,6 +62,9 @@ int __is_goal(struct howderek_graph_vertex* v1, struct howderek_graph_vertex* go
     position_t* v1Pos = v1->data;
     position_t* goalPos = goal->data;
     if(v1Pos->coordinates.x == goalPos->coordinates.x && v1Pos->coordinates.y == goalPos->coordinates.y)
+    {
+        return 1;
+    }
     return 0;
 }
 
