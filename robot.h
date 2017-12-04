@@ -13,4 +13,4 @@ struct robot {
     struct howderek_graph_vertex* goal;
 };
 
-struct howderek_graph_pathfinding_data* find_distance(struct howderek_graph g, struct howderek_graph_vertex start, struct howderek_vertex end);
+struct world_pathfinding_data* find_distance(struct howderek_graph g, struct howderek_graph_vertex* start, struct howderek_graph_vertex* end);
