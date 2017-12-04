@@ -94,7 +94,7 @@ int howderek_menu(char* promptString, char* failString, const int min, const int
 struct howderek_configuration_t howderek_parse_command_line_options(int argc, char *argv[]) {
   howderek_global_clock(); //Start the clock when the program starts
 
-  if (argc < 3) {
+  if (argc < 2) {
     howderek_log(HOWDEREK_LOG_FATAL, "Input and output file must be passed.");
     exit(EINVAL);
   }
