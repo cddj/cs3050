@@ -123,6 +123,5 @@ struct world_pathfinding_data* find_distance(struct howderek_graph_vertex* start
     }
 
     return NULL;
-
 }
 
