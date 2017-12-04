@@ -10,3 +10,4 @@
  * \param w       the world
  */
 void renderer(struct world* w);
+
