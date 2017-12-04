@@ -53,7 +53,7 @@ void renderer(struct world* w) {
     //w->graph.vertex_map->array[i]
     //howderek_graph_display(&(w->graph));
 
-
-    //howderek_clear();
+    //Clears space inbetween, if I am to believe what Derek says
+    howderek_clear();
   return;
 }
