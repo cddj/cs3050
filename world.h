@@ -27,7 +27,8 @@ struct position {
 struct world_pathfinding_data
 {
     size_t distance;
-    double heuristicData;
+    double heuristicDistance;
+    double sumOfDistances;
     struct howderek_graph_vertex* v;
     struct world_pathfinding_data* next;
 };
