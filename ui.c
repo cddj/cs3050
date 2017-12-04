@@ -2,7 +2,7 @@
  *  \brief Handles user interaction with the program. Displays a world.
  */
 
-<<<<<<< Updated upstream
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "ui.h"
@@ -36,8 +36,8 @@ void renderer(struct world* w) {
     for(i = 0;i< 100;i++){
         for(j = 0; j< 100 ;j++){
             struct howderek_kv_iter iter;
-            howderek_kv_fill_iter(w->graph.vertex_map, &iter);
-            while (howderek_kv_iterate(w->graph.vertex_map, &iter)) {
+            howderek_kv_fill_iter(w->graph->vertex_map, &iter);
+            while (howderek_kv_iterate(w->graph->vertex_map, &iter)) {
             howderek_graph_display_vertex_info(iter.value, NULL);
 
             worldArray[i][j] = iter.value;
@@ -58,9 +58,5 @@ void renderer(struct world* w) {
 
     //Clears space inbetween, if I am to believe what Derek says
     howderek_clear();
-=======
-void renderer(struct world w) {
-  // Not yet implemented.
->>>>>>> Stashed changes
-  return;
+
 }
