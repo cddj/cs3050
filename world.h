@@ -29,8 +29,8 @@ typedef union {
 struct world_pathfinding_data
 {
     size_t distance;
-    double heuristicDistance;
-    double sumOfDistances;
+    int heuristicDistance;
+    int sumOfDistances;
     struct howderek_graph_vertex* v;
     struct world_pathfinding_data* next;
 };
