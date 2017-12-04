@@ -16,15 +16,42 @@
  *
  *  1. Print to console the steps taken by the robots in the world. One by one.
  *
+ * Load graph into 2 dimensional array.
+ * iterate through 2 dimensional array, printing it out.
+ *
  * */
 
 void renderer(struct world* w) {
 
-
     // Not yet implemented.
 
+    //Variables etc.
+    char** worldArray = malloc(sizeof(char)*100);
+    *worldArray = malloc(sizeof(char)*100);
+
+    //loads the world into a 2 dimensional array
+    for(int i = 0;i< 100;i++){
+        for(int j = 0; j< 100 ;j++){
+            struct howderek_kv_iter iter;
+            howderek_kv_fill_iter(w->graph.vertex_map, &iter);
+            while (howderek_kv_iterate(graph->vertex_map, &iter)) {
+            howderek_graph_display_vertex_info(iter.value, NULL);
+
+            worldArray[i][j] = iter.value;
+
+            }
+        }
+    }
+
+
+    //printing the 2 dimensional array
+    for(i = 0;i< 100;i++){
+        for(j = 0; j< 100 ;j++){
+            printf("%c",worldArray[i][j]);
+        }
+    }
     //w->graph.vertex_map->array[i]
-    howderek_graph_display(&(w->graph));
+    //howderek_graph_display(&(w->graph));
 
 
     //howderek_clear();
