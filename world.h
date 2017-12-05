@@ -26,15 +26,6 @@ typedef union {
   uint64_t bits;
 } position_t;
 
-struct world_pathfinding_data
-{
-    size_t distance;
-    int heuristicDistance;
-    int sumOfDistances;
-    struct howderek_graph_vertex* v;
-    struct world_pathfinding_data* next;
-};
-
 typedef enum {
   N,
   NE,
@@ -120,7 +111,7 @@ struct world* world_clone(struct world* w, position_t pos);
  *
  * \return            the clone of the world
  */
-struct howderek_graph_vertex* world_adjacent(struct howderek_graph_vertex* vertex);
+struct howderek_graph_vertex** world_adjacent(struct howderek_graph_vertex* vertex);
 
 
 /**

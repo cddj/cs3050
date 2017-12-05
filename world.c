@@ -145,17 +145,22 @@ int world_remove(struct world* w,
  *
  * \return            the clone of the world
  */
-struct world* world_clone(struct world* w, position_t pos);
+struct world* world_clone(struct world* w,
+                          position_t pos) {
+
+}
 
 
 /**
- * Clone a world
+ * Return all the adjacent nodes
  *
  * \param world       the world
  *
  * \return            the clone of the world
  */
-struct howderek_graph_vertex* world_adjacent(struct howderek_graph_vertex* vertex);
+//struct howderek_graph_vertex** world_adjacent(struct howderek_graph_vertex* vertex) {
+//  struct howderek_graph_vertex* derek[8];
+//}
 
 
 /**

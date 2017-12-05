@@ -27,6 +27,8 @@ struct howderek_graph* howderek_graph_create(enum howderek_graph_type type, int 
   expectedCount = (expectedCount >= 0) ? expectedCount : 0;
   struct howderek_graph* graph =  malloc(sizeof(struct howderek_graph));
   graph->vertex_map = howderek_kv_create(expectedCount, HOWDEREK_KV_ARRAY);
+  graph->vertex_map = howderek_kv_create(expectedCount, HOWDEREK_KV_ARRAY);
+  graph->vertex_map = howderek_kv_create(expectedCount, HOWDEREK_KV_ARRAY);
   graph->root = NULL;
   graph->type = type;
   return graph;
