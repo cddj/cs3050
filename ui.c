@@ -90,6 +90,14 @@ void build_world(struct world* w, size_t size)
                     howderek_array_push(queue, world_add(w, tmpPos2));
                     rawChars[tmpPos2.coordinates.x][tmpPos2.coordinates.y] = '.';
                 }
+                if(rawChars[tmpPos2.coordinates.x][tmpPos2.coordinates.y] == 'E')
+                {
+                    howderek_array_push(queue, world_add(w, tmpPos2));
+                }
+                if(rawChars[tmpPos2.coordinates.x][tmpPos2.coordinates.y] == 'L')
+                {
+                    howderek_array_push(queue, world_add(w, tmpPos2));
+                }
             }
         }
         howderek_array_destroy(queue, queue->size);
@@ -158,8 +166,6 @@ struct world* load_world(FILE* file) {
     w->rawChars = rawChars;
     w->robots[0].pos = world_add(w, robotPositions[0]);
     w->robots[1].pos = world_add(w, robotPositions[1]);
-    w->robots[0].goal = world_add(w, goalPositions[0]);
-    w->robots[1].goal = world_add(w, goalPositions[1]);
     build_world(w, lineCount * maxCharCount);
     return w;
 }
