@@ -5,6 +5,9 @@
  *         world, including the entire graph and the other robots.
  */
 
+#include <math.h>
+#include <string.h>
+
 #include "libhowderek/howderek.h"
 #include "libhowderek/howderek_graph.h"
 #include "libhowderek/howderek_hashmap.h"
@@ -147,20 +150,29 @@ int world_remove(struct world* w,
  */
 struct world* world_clone(struct world* w,
                           position_t pos) {
-
+  struct world* newWorld;
+  newWorld->graph = howderek_graph_clone_without_data(w->graph);
+  memcpy(newWorld->robots, w->robots, sizeof(struct robot) * NUMBER_OF_ROBOTS);
+  return newWorld;
 }
 
 
 /**
- * Return all the adjacent nodes
+ * Return 1 if start and end are adjacent
  *
- * \param world       the world
+ * \param start       starting position
+ * \param end         ending position
  *
- * \return            the clone of the world
+ * \return            1 if adjacent, 0 if not adjacent
  */
-//struct howderek_graph_vertex** world_adjacent(struct howderek_graph_vertex* vertex) {
-//  struct howderek_graph_vertex* derek[8];
-//}
+char world_is_adjacent(position_t start,
+                       position_t end) {
+  int64_t xdiff = end.coordinates.x - start.coordinates.x;
+  int64_t ydiff = end.coordinates.y - start.coordinates.y;
+  return ((llabs(xdiff) < 2)
+           && (llabs(ydiff) < 2)
+           && ((llabs(xdiff) + llabs(ydiff)) != 0));
+}
 
 
 /**

@@ -34,8 +34,7 @@ int main(void)
     struct world* test = world_let_there_be_light(90);
     position_t* tmp;
     int i;
-    for(i = 1; i < 11; i++)
-    {
+    for (i = 1; i < 11; i++) {
         tmp = malloc(sizeof(position_t));
         tmp->coordinates.x = i;
         tmp->coordinates.y = 0;
@@ -50,9 +49,9 @@ int main(void)
     end->coordinates.y = 0;
     struct pathfinding_data* list;
     list = find_distance(test->graph, world_at_position(test, *start), world_at_position(test, *end));
-    while(list != NULL)
-    {
-        printf("x: %u, y: %u", list->v->data->coordinates.x, list->v->data->coordinates.y);
+    while (list != NULL) {
+      position_t *pos = list->v->data;
+      printf("x: %u, y: %u", pos->coordinates.x, pos->coordinates.y);
     }
 
     return 0;

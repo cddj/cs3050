@@ -111,7 +111,7 @@ struct world* world_clone(struct world* w, position_t pos);
  *
  * \return            the clone of the world
  */
-struct howderek_graph_vertex** world_adjacent(struct howderek_graph_vertex* vertex);
+char world_is_adjacent(position_t start, position_t end);
 
 
 /**
