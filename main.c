@@ -42,6 +42,18 @@ int main(void)
         world_add(test, *tmp);
     }
 
+    position_t* start = malloc(sizeof(position_t));
+    position_t* end = malloc(sizeof(position_t));
+    start->coordinates.x = 1;
+    start->coordinates.y = 0;
+    end->coordinates.x = 10;
+    end->coordinates.y = 0;
     struct pathfinding_data* list;
-    list = find_distance(test->graph, world_at_position(test, start), world_at_position(test, end));
+    list = find_distance(test->graph, world_at_position(test, *start), world_at_position(test, *end));
+    while(list != NULL)
+    {
+        printf("x: %u, y: %u", list->v->data->coordinates.x, list->v->data->coordinates.y);
+    }
+
+    return 0;
 }
