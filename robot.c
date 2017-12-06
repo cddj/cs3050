@@ -86,8 +86,7 @@ struct pathfinding_data* find_distance (struct howderek_graph* g, struct howdere
 
     howderek_heap_push(openList, start);
 
-    while (openList->store->size != 0) {
-        curr = howderek_heap_pop(openList);
+    while ((curr = howderek_heap_pop(openList))) {
 
         if (closedListEnd != NULL) {
             closedListEnd->next = curr;
