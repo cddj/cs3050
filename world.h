@@ -16,6 +16,8 @@
 struct world {
     struct howderek_graph* graph;
     struct robot robots[NUMBER_OF_ROBOTS];
+    uint32_t height;
+    uint32_t width;
 };
 
 typedef union {
