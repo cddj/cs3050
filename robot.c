@@ -28,7 +28,7 @@ int8_t __howderek_graph_sum_compare(howderek_array_value_t left, howderek_array_
     if (u->id == v->id) {
       return 0;
     } else {
-      int8_t result = (uData->sumOfDistances == vData->sumOfDistances) ? 0 : ((uData->sumOfDistances >vData->sumOfDistances) ? 1 : -1);
+      int8_t result = (uData->sumOfDistances == vData->sumOfDistances) ? 0 : ((uData->sumOfDistances > vData->sumOfDistances) ? 1 : -1);
       return result;
     }
 
@@ -48,28 +48,26 @@ int __calc_heuristic (struct howderek_graph_vertex* v1, struct howderek_graph_ve
    int64_t v1y = v1Pos.coordinates.y;
    int64_t goalx = goalPos.coordinates.x;
    int64_t goaly = goalPos.coordinates.y;
-   if(llabs(v1x - goalx) > llabs(v1y - goaly))
-   {
-        return llabs(v1x - goalx);
-   }
-   else
-   {
-       return llabs(v1y - goaly);
+   if(llabs(v1x - goalx) > llabs(v1y - goaly)) {
+      return llabs(v1x - goalx);
+   } else {
+      return llabs(v1y - goaly);
    }
 }
 
-int __is_goal (struct howderek_graph_vertex* v1, struct howderek_graph_vertex* goal) {
-    position_t v1Pos;
-    v1Pos.bits = v1->id;
+int __is_goal (struct howderek_graph_vertex* v, struct howderek_graph_vertex* goal) {
+    position_t pos;
+    pos.bits = v->id;
     position_t goalPos;
     goalPos.bits = goal->id;
-    if (v1Pos.coordinates.x == goalPos.coordinates.x && v1Pos.coordinates.y == goalPos.coordinates.y) {
-        return 1;
+    if (pos.coordinates.x == goalPos.coordinates.x && pos.coordinates.y == goalPos.coordinates.y) {
+       return 1;
+    } else {
+      return 0;
     }
-    return 0;
 }
 
-struct pathfinding_data* find_distance (struct howderek_graph* g, struct howderek_graph_vertex* startVertex, struct howderek_graph_vertex* endVertex) {
+struct pathfinding_data* astar (struct howderek_graph* g, struct howderek_graph_vertex* startVertex, struct howderek_graph_vertex* endVertex) {
     const enum howderek_vertex_status unvisitedColor = HOWDEREK_GRAPH_COLOR(startVertex->status);
     const enum howderek_vertex_status visitedColor = (unvisitedColor == HOWDEREK_GRAPH_BLACK) ? HOWDEREK_GRAPH_WHITE : HOWDEREK_GRAPH_BLACK;
     struct pathfinding_data* closedList;
@@ -87,8 +85,7 @@ struct pathfinding_data* find_distance (struct howderek_graph* g, struct howdere
 
     howderek_heap_push(openList, start);
 
-    while (openList->store->size != 0) {
-        curr = howderek_heap_pop(openList);
+    while ((curr = howderek_heap_pop(openList)) != NULL) {
 
         if (closedListEnd != NULL) {
             closedListEnd->next = curr;
@@ -108,16 +105,16 @@ struct pathfinding_data* find_distance (struct howderek_graph* g, struct howdere
                 closedListEnd = closedListEnd->next;
                 closedListEnd->distance = curr->distance + 1;
                 closedListEnd->heuristicDistance = 0;
-                closedListEnd->sumOfDistances = closedListEnd ->distance + closedListEnd->heuristicDistance;
-                closedListEnd->v = edge ->vertex;
+                closedListEnd->sumOfDistances = closedListEnd->distance + closedListEnd->heuristicDistance;
+                closedListEnd->v = edge->vertex;
                 closedListEnd->next = NULL;
                 return closedList;
             } else if (HOWDEREK_GRAPH_COLOR(edge->vertex->status) != visitedColor) {
                 tmp = malloc(sizeof(struct pathfinding_data));
-                tmp->distance = curr ->distance + 1;
+                tmp->distance = curr->distance + 1;
                 tmp->heuristicDistance = __calc_heuristic(edge->vertex, endVertex);
                 tmp->sumOfDistances = tmp->distance + tmp->heuristicDistance;
-                tmp->v = edge ->vertex;
+                tmp->v = edge->vertex;
                 tmp->next = NULL;
                 howderek_heap_push(openList, tmp);
             }

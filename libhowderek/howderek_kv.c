@@ -76,13 +76,15 @@ howderek_array_value_t howderek_kv_get(struct howderek_kv* kv, size_t key) {
     howderek_log(HOWDEREK_LOG_ERROR, "libhowderek_kv: howderek_kv_get called on kv=NULL");
     return HOWDEREK_ARRAY_EMPTY_VALUE;
   }
+  howderek_array_value_t result;
   switch (kv->type) {
     case HOWDEREK_KV_ARRAY:
-      return howderek_array_get(kv->array, key);
+      result = howderek_array_get(kv->array, key);
     case HOWDEREK_KV_HASHMAP:
     default:
-      return howderek_hashmap_get(&(kv->hashmap), (key + 1));
+      result = howderek_hashmap_get(&(kv->hashmap), (key + 1));
   }
+  return result;
 }
 
 
@@ -102,10 +104,10 @@ void howderek_kv_set(struct howderek_kv* kv, size_t key, howderek_array_value_t 
       kv->size = key;
     }
     kv->zeroRatio = (float) kv->count / (float) kv->size;
-    if (kv->zeroRatio > kv->threshold && kv->type == HOWDEREK_KV_HASHMAP) {
+    if (kv->zeroRatio > kv->threshold && kv->type == HOWDEREK_KV_HASHMAP && kv->count > HOWDEREK_KV_MIN_TO_SWITCH) {
       howderek_log(HOWDEREK_LOG_DEBUG, "key-value store at %p now using array", kv);
       __howderek_kv_to_array(kv, kv->size);
-    } else if (kv->zeroRatio <= kv->threshold && kv->type == HOWDEREK_KV_ARRAY) {
+    } else if (kv->zeroRatio <= kv->threshold && kv->type == HOWDEREK_KV_ARRAY && kv->count > HOWDEREK_KV_MIN_TO_SWITCH) {
       howderek_log(HOWDEREK_LOG_DEBUG, "key-value store at %p is now using hashmap", kv);
       __howderek_kv_to_hashmap(kv, kv->size);
     }
@@ -115,7 +117,7 @@ void howderek_kv_set(struct howderek_kv* kv, size_t key, howderek_array_value_t 
       howderek_array_set(kv->array, key, value);
       return;
     case HOWDEREK_KV_HASHMAP:
-      howderek_hashmap_set(&(kv->hashmap), key, value);
+      howderek_hashmap_set(&(kv->hashmap), (key + 1), value);
       return;
   }
 }

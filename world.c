@@ -106,7 +106,7 @@ struct howderek_graph_vertex* world_at_position(struct world* w,
 }
 
 /**
- * Add a space that a robot can reach in the world. Automaticall connects to
+ * Add a space that a robot can reach in the world. Automatically connects to
  * nearby spaces
  *
  * \param starting    inital position
@@ -118,10 +118,9 @@ struct howderek_graph_vertex* world_at_position(struct world* w,
 struct howderek_graph_vertex* world_add(struct world* w,
                                         position_t pos) {
   struct howderek_graph_vertex* v = howderek_graph_add_vertex(w->graph, pos.bits, NULL);
-  for (direction_t currentDirection = N; currentDirection < NW; currentDirection++) {
+  for (direction_t currentDirection = N; currentDirection <= NW; currentDirection++) {
     struct howderek_graph_vertex* testVertex = world_at_position(w, world_line_from(pos, 1, currentDirection));
     if (testVertex != NULL) {
-      howderek_log(HOWDEREK_LOG_DEBUG, "adsa");
       howderek_graph_add_edge(w->graph, v, testVertex, 1.0);
     }
   }

@@ -13,6 +13,7 @@
 #include "howderek_array.h"
 #include "howderek_hashmap.h"
 
+#define HOWDEREK_KV_MIN_TO_SWITCH 3
 
 enum howderek_kv_containers {
   HOWDEREK_KV_ARRAY   = 1,

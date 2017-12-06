@@ -22,41 +22,15 @@
  * */
 
 void renderer(struct world* w) {
-
-    // Not yet implemented.
-
-    //Variables etc.
-    int i,j;
-    char** worldArray = malloc(sizeof(char)*100);
-    *worldArray = malloc(sizeof(char)*100);
-
-    //loads the world into a 2 dimensional array
-    for(i = 0;i< 100;i++){
-        for(j = 0; j< 100 ;j++){
-            struct howderek_kv_iter iter;
-            howderek_kv_fill_iter(w->graph->vertex_map, &iter);
-            while (howderek_kv_iterate(w->graph->vertex_map, &iter)) {
-            howderek_graph_display_vertex_info(iter.value, NULL);
-
-            worldArray[i][j] = iter.value;
-
-            }
-        }
+  uint32_t i;
+  uint32_t j;
+  for (i = 0; i < w->height; i++) {
+    char* line = w->rawChars[i];
+    for (j = 0; j < w->width; j++) {
+      putchar(line[j]);
     }
-
-
-    //printing the 2 dimensional array
-    for(i = 0;i< 100;i++){
-        for(j = 0; j< 100 ;j++){
-            printf("%c",worldArray[i][j]);
-        }
-    }
-    //w->graph.vertex_map->array[i]
-    //howderek_graph_display(&(w->graph));
-
-    //Clears space inbetween, if I am to believe what Derek says
-    howderek_clear();
-
+    putchar('\n');
+  }
 }
 
 void build_world(struct world* w, size_t size)

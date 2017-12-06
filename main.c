@@ -30,22 +30,26 @@
 
 int main(void)
 {
-    struct world* test = world_let_there_be_light(90);
+    howderek_set_log_level(HOWDEREK_LOG_DEBUG);
+    struct world* test = world_let_there_be_light(10);
     int i;
     for (i = 1; i < 11; i++) {
       position_t tmp;
       tmp.coordinates.x = i;
-      tmp.coordinates.y = 0;
+      tmp.coordinates.y = i;
       world_add(test, tmp);
     }
+    howderek_graph_display(test->graph);
     position_t start;
     position_t end;
     start.coordinates.x = 1;
-    start.coordinates.y = 0;
+    start.coordinates.y = 1;
     end.coordinates.x = 10;
-    end.coordinates.y = 0;
+    end.coordinates.y = 10;
     struct pathfinding_data* list;
-    list = find_distance(test->graph, world_at_position(test, start), world_at_position(test, end));
+    struct howderek_graph_vertex* startV = world_at_position(test, start);
+    struct howderek_graph_vertex* endV = world_at_position(test, end);
+    list = astar(test->graph, startV, endV);
     while (list != NULL) {
       position_t pos;
       pos.bits = list->v->id;

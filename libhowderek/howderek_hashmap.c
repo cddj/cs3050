@@ -47,6 +47,7 @@ struct howderek_hashmap* howderek_hashmap_create(size_t sqrt_size) {
 
 
 void __howderek_hashmap_resize(struct howderek_hashmap** hashmap_ptr) {
+  howderek_log(HOWDEREK_LOG_DEBUG, "hashmap resizing");
   struct howderek_hashmap* hashmap = *hashmap_ptr;
   struct howderek_hashmap* newHashmap = howderek_hashmap_create(hashmap->__primeCount + 1);
   int i, j;
@@ -63,7 +64,7 @@ void __howderek_hashmap_resize(struct howderek_hashmap** hashmap_ptr) {
 
 
 
-struct howderek_hashmap_node* __howderek_hashmap_hash(struct howderek_hashmap* hashmap, howderek_hashmap_key_t key) {
+struct howderek_hashmap_node* howderek_hashmap_hash(struct howderek_hashmap* hashmap, howderek_hashmap_key_t key) {
   size_t hash_array[HOWDEREK_HASHMAP_HASH_FUNCTIONS];
   unsigned int i;
   hash_array[0] = key % hashmap->size;
@@ -129,7 +130,7 @@ struct howderek_hashmap_node* howderek_hashmap_add_with_flags(struct howderek_ha
     return 0;
   }
   struct howderek_hashmap* hashmap = *hashmap_ptr;
-  struct howderek_hashmap_node* node = __howderek_hashmap_hash(hashmap, key);
+  struct howderek_hashmap_node* node = howderek_hashmap_hash(hashmap, key);
   if (node != NULL) {
     if (node->key != key) {
       hashmap->count++;
@@ -164,7 +165,7 @@ int howderek_hashmap_remove(struct howderek_hashmap** hashmap_ptr, howderek_hash
     return 0;
   }
   struct howderek_hashmap* hashmap = *hashmap_ptr;
-  struct howderek_hashmap_node* node = __howderek_hashmap_hash(hashmap, key);
+  struct howderek_hashmap_node* node = howderek_hashmap_hash(hashmap, key);
   // Does there exist a value here?
   if (node != NULL && node->value != 0) {
     if (HOWDEREK_HASHMAP_NODE_ALLOCATED(node->flags)) {
@@ -188,7 +189,7 @@ howderek_hashmap_value_t howderek_hashmap_get(struct howderek_hashmap** hashmap_
     return NULL;
   }
   struct howderek_hashmap* hashmap = *hashmap_ptr;
-  struct howderek_hashmap_node* node = __howderek_hashmap_hash(hashmap, key);
+  struct howderek_hashmap_node* node = howderek_hashmap_hash(hashmap, key);
   if (node != NULL && node->key == key) {
     return node->value; // Found it!
   } else {

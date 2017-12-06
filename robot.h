@@ -21,4 +21,4 @@ struct pathfinding_data {
     struct howderek_graph_vertex* v;
 };
 
-struct pathfinding_data* find_distance (struct howderek_graph* g, struct howderek_graph_vertex* startVertex, struct howderek_graph_vertex* endVertex);
+struct pathfinding_data* astar (struct howderek_graph* g, struct howderek_graph_vertex* startVertex, struct howderek_graph_vertex* endVertex);

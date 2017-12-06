@@ -119,6 +119,15 @@ int howderek_hashmap_remove(struct howderek_hashmap** hashmap_ptr,
 
 
 /**
+ * Return the slot that matches a key
+ *
+ * \param hashmap  hashmap to search
+ * \param key      key    (default type: uint64_t)
+ * \return         the value if found, 0 if not
+ */
+struct howderek_hashmap_node* howderek_hashmap_hash(struct howderek_hashmap* hashmap, howderek_hashmap_key_t key);
+
+/**
  * Return a pointer to a value in the skiplist or NULL if not found
  * 
  * \param hashmap  hashmap to search

@@ -45,7 +45,6 @@ void howderek_heap_destroy(struct howderek_heap* heap, int freeData) {
 
 void howderek_heap_push(struct howderek_heap* heap, howderek_array_value_t value) {
   size_t i = heap->store->count;
-  howderek_array_value_t* newValue = howderek_array_push(heap->store, value);
   while (i != 0 && heap->compareFunction(HOWDEREK_HEAP_PARENT(heap, i), value) > 0) {
     howderek_array_swap(heap->store, i, HOWDEREK_HEAP_PARENT_INDEX(heap, i));
     i = HOWDEREK_HEAP_PARENT_INDEX(heap, i);

@@ -1,20 +1,5 @@
 /*! \file howderek_graph.h
-    \brief Skipgraph implemenetation by Derek Howard. Good choice of data structure
-           for a wide range of problems. Similar properties to BSTs and linked graphs.
-            
-                       Average    Worst-case
-           
-           Space       O(n)       O(n log n)
-           Search      O(log n)   O(n)
-           Insert      O(log n)   O(n)
-           Delete      O(log n)   O(n)
-
-           Thanks to William Pugh [1] for his description of Skip Lists and Thomas 
-           Niemann at the University of Auckland [2] for his reference implementation 
-           and visual explanations.
-
-           [1] http://delivery.acm.org/10.1145/80000/78977/p668-pugh.pdf
-           [2] https://www.cs.auckland.ac.nz/~jmor159/PLDS210/niemann/s_skl.htm
+    \brief Graph functions
 */
 
 #ifndef H_LIBHOWDEREK_GRAPH_H

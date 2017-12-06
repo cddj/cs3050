@@ -417,7 +417,7 @@ int howderek_graph_export(struct howderek_graph* graph, FILE* output);
 
 
 void howderek_graph_display(struct howderek_graph* graph) {
-  printf("Graph Type: %s\n\nInternal kv ", (graph->type == HOWDEREK_GRAPH_UNDIRECTED) ? "Undirected" : "Directed");
+  printf("Graph Type: %s\n\nInternal KV\n", (graph->type == HOWDEREK_GRAPH_UNDIRECTED) ? "Undirected" : "Directed");
   struct howderek_kv_iter iter;
   howderek_kv_fill_iter(graph->vertex_map, &iter);
   while (howderek_kv_iterate(graph->vertex_map, &iter)) {
