@@ -22,9 +22,26 @@
 */
 
 
-int main(int argc, char** argv) {
-  struct howderek_configuration_t config = howderek_parse_command_line_options(argc, argv);
-  howderek_log(HOWDEREK_LOG_INFO, "Loading...");
-  struct world* w = load_world(config.in);
-  return 0;
+//int main(int argc, char** argv) {
+//  struct howderek_configuration_t config = howderek_parse_command_line_options(argc, argv);
+//  howderek_log(HOWDEREK_LOG_INFO, "Loading...");
+//  struct world* w = load_world(config.in);
+//  return 0;
+//}
+
+int main(void)
+{
+    struct world* test = world_let_there_be_light(90);
+    position_t* tmp;
+    int i;
+    for(i = 1; i < 11; i++)
+    {
+        tmp = malloc(sizeof(position_t));
+        tmp->coordinates.x = i;
+        tmp->coordinates.y = 0;
+        world_add(test, *tmp);
+    }
+
+    struct pathfinding_data* list;
+    list = find_distance(test->graph, world_at_position(test, start), world_at_position(test, end));
 }
