@@ -36,7 +36,7 @@ struct howderek_graph* howderek_graph_create(enum howderek_graph_type type, int 
 
 
 
-struct howderek_graph_vertex* howderek_graph_get(struct howderek_graph* graph, size_t key) {
+struct howderek_graph_vertex* howderek_graph_get(struct howderek_graph* graph, uint64_t key) {
   return howderek_kv_get(graph->vertex_map, key);
 }
 
@@ -62,7 +62,7 @@ void __howderek_graph_destroy_vertex(void* vertex_as_void_ptr) {
 
 
 
-int howderek_graph_delete(struct howderek_graph* graph, size_t key) {
+int howderek_graph_delete(struct howderek_graph* graph, uint64_t key) {
   struct howderek_graph_vertex* vertex = howderek_graph_get(graph, key);
   if (vertex == NULL) {
     return 0;
@@ -100,7 +100,7 @@ void howderek_graph_destroy(struct howderek_graph** graphPtr, int freeData) {
  * \param key     index
  * \param data   pointer to data to store
  */
-struct howderek_graph_vertex* howderek_graph_add_vertex(struct howderek_graph* graph, size_t key, void* data) {
+struct howderek_graph_vertex* howderek_graph_add_vertex(struct howderek_graph* graph, uint64_t key, void* data) {
   struct howderek_graph_vertex* vertex = malloc(sizeof(struct howderek_graph_vertex));
   vertex->id = key;
   vertex->data = data;
@@ -115,8 +115,8 @@ struct howderek_graph_vertex* howderek_graph_add_vertex(struct howderek_graph* g
 
 
 
-struct howderek_graph_edge* howderek_graph_add_edge_by_id(struct howderek_graph* graph, size_t begin,
-                                                   size_t end, double weight) {
+struct howderek_graph_edge* howderek_graph_add_edge_by_id(struct howderek_graph* graph, uint64_t begin,
+                                                   uint64_t end, double weight) {
   struct howderek_graph_vertex* from = howderek_graph_get(graph, begin);
   struct howderek_graph_vertex* to = howderek_graph_get(graph, end);
   return howderek_graph_add_edge(graph, from, to, weight);
@@ -253,13 +253,13 @@ int8_t __howderek_graph_weighted_compare(howderek_array_value_t left, howderek_a
   return result;
 }
 
-struct howderek_graph* howderek_graph_dijkstra(struct howderek_graph* graph, size_t starting) {
+struct howderek_graph* howderek_graph_dijkstra(struct howderek_graph* graph, uint64_t starting) {
   struct howderek_graph* distanceGraph = howderek_graph_clone_without_data(graph);
   distanceGraph->onDataDisplay = __howderek_weight_display;
   struct howderek_heap* queue = howderek_heap_create(0, __howderek_graph_weighted_distance_compare);
   struct howderek_graph_pathfinding_data* dataPool =  malloc(sizeof(struct howderek_graph_pathfinding_data)
                                                              * distanceGraph->vertex_map->count);
-  size_t k = 0;
+  uint64_t k = 0;
   struct howderek_kv_iter iter;
   howderek_kv_fill_iter(graph->vertex_map, &iter);
 
@@ -307,7 +307,7 @@ struct howderek_graph* howderek_graph_dijkstra(struct howderek_graph* graph, siz
 }
 
 struct howderek_graph_pathfinding_data* __howderek_graph_create_distance(double weighted,
-                                                          size_t unweighted,
+                                                          uint64_t unweighted,
                                                           struct howderek_graph_vertex* pred) {
   struct howderek_graph_pathfinding_data* distanceData = malloc(sizeof(struct howderek_graph_pathfinding_data));
   distanceData->distance = unweighted;
@@ -318,7 +318,7 @@ struct howderek_graph_pathfinding_data* __howderek_graph_create_distance(double 
 
 
 void howderek_graph_bfs(struct howderek_graph* graph,
-                        size_t starting) {
+                        uint64_t starting) {
   struct howderek_graph_vertex* startingVertex = howderek_graph_get(graph, starting);
   if (startingVertex == NULL) {
     startingVertex = graph->root;
@@ -335,7 +335,7 @@ void howderek_graph_bfs(struct howderek_graph* graph,
     }
     struct howderek_graph_edge* iter = parent->edges;
     while (iter != NULL) {
-      size_t potentialDistance = ((struct howderek_graph_pathfinding_data*)(parent->data))->distance + 1;
+      uint64_t potentialDistance = ((struct howderek_graph_pathfinding_data*)(parent->data))->distance + 1;
       if ((iter->vertex->data != NULL
           && potentialDistance < ((struct howderek_graph_pathfinding_data*)(iter->vertex->data))->distance)
           || iter->vertex->data == NULL) {

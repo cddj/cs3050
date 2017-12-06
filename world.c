@@ -117,9 +117,6 @@ struct howderek_graph_vertex* world_at_position(struct world* w,
  */
 struct howderek_graph_vertex* world_add(struct world* w,
                                         position_t pos) {
-  position_t* newPos = malloc(sizeof(position_t));
-  newPos->coordinates.x = pos.coordinates.x;
-  newPos->coordinates.y = pos.coordinates.y;
   struct howderek_graph_vertex* v = howderek_graph_add_vertex(w->graph, pos.bits, NULL);
   for (direction_t currentDirection = N; currentDirection < NE; currentDirection++) {
     struct howderek_graph_vertex* testVertex = world_at_position(w, world_line_from(pos, 1, currentDirection));

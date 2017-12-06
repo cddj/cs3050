@@ -35,22 +35,20 @@ int main(void)
     position_t* tmp;
     int i;
     for (i = 1; i < 11; i++) {
-        tmp = malloc(sizeof(position_t));
-        tmp->coordinates.x = i;
-        tmp->coordinates.y = 0;
-        world_add(test, *tmp);
+        position_t tmp;
+        tmp.coordinates.x = i;
+        tmp.coordinates.y = 0;
+        world_add(test, tmp);
     }
 
-    position_t* startPos = malloc(sizeof(position_t));
-    position_t* endPos = malloc(sizeof(position_t));
-    startPos->coordinates.x = 1;
-    startPos->coordinates.y = 0;
-    endPos->coordinates.x = 10;
-    endPos->coordinates.y = 0;
+    position_t* start = malloc(sizeof(position_t));
+    position_t* end = malloc(sizeof(position_t));
+    start->coordinates.x = 1;
+    start->coordinates.y = 0;
+    end->coordinates.x = 10;
+    end->coordinates.y = 0;
     struct pathfinding_data* list;
-    struct howderek_graph_vertex* startVertex = world_at_position(test, *startPos);
-    struct howderek_graph_vertex* endVertex = world_at_position(test, *endPos);
-    list = find_distance(test->graph, startVertex, endVertex);
+    list = find_distance(test->graph, world_at_position(test, *start), world_at_position(test, *end));
     while (list != NULL) {
       position_t *pos = list->v->data;
       printf("x: %u, y: %u", pos->coordinates.x, pos->coordinates.y);

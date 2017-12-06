@@ -40,12 +40,14 @@ int8_t __howderek_graph_sum_compare(howderek_array_value_t left, howderek_array_
 }
 
 int __calc_heuristic (struct howderek_graph_vertex* v1, struct howderek_graph_vertex* goal) {
-   position_t* v1Pos = v1->data;
-   position_t* goalPos = goal->data;
-   int64_t v1x = v1Pos->coordinates.x;
-   int64_t v1y = v1Pos->coordinates.y;
-   int64_t goalx = goalPos->coordinates.x;
-   int64_t goaly = goalPos->coordinates.y;
+   position_t v1Pos;
+   v1Pos.bits = v1->id;
+   position_t goalPos;
+   goalPos.bits = goal->id;
+   int64_t v1x = v1Pos.coordinates.x;
+   int64_t v1y = v1Pos.coordinates.y;
+   int64_t goalx = goalPos.coordinates.x;
+   int64_t goaly = goalPos.coordinates.y;
    if(llabs(v1x - goalx) > llabs(v1y - goaly))
    {
         return llabs(v1x - goalx);

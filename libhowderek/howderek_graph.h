@@ -58,7 +58,7 @@ struct howderek_graph_edge {
 };
 
 struct howderek_graph_vertex {
-  size_t id;              // Unique identified of the node. Avoid using 0
+  uint64_t id;              // Unique identified of the node. Avoid using 0
   howderek_array_value_t data;          // Data associated with this vertex
   enum howderek_vertex_status status;     // Color and markedness of the vertex
   struct howderek_graph_edge* edges;  // Edges
@@ -72,7 +72,7 @@ struct howderek_graph {
 };
 
 struct howderek_graph_pathfinding_data {
-    size_t distance;
+    uint64_t distance;
     double weightedDistance;
     struct howderek_graph_vertex* predecessor;
 };
@@ -115,7 +115,7 @@ struct howderek_graph* howderek_graph_clone_without_data(struct howderek_graph* 
  * \param starting   id to start from
  */
 struct howderek_graph* howderek_graph_dijkstra(struct howderek_graph* graph,
-                                               size_t starting);
+                                               uint64_t starting);
 
 /**
  * Uses BFS to create a distance graph from a given start node
@@ -124,7 +124,7 @@ struct howderek_graph* howderek_graph_dijkstra(struct howderek_graph* graph,
  * \param starting   id to start from
  */
 void howderek_graph_bfs(struct howderek_graph* graph,
-                        size_t starting);
+                        uint64_t starting);
 
 /**
  * Returns a pointer to a vertex
@@ -133,7 +133,7 @@ void howderek_graph_bfs(struct howderek_graph* graph,
  * \param id     id to find
  */
 struct howderek_graph_vertex* howderek_graph_get(struct howderek_graph* graph,
-                                                 size_t id);
+                                                 uint64_t id);
 
 /**
  * Remove a value from the graph
@@ -141,7 +141,7 @@ struct howderek_graph_vertex* howderek_graph_get(struct howderek_graph* graph,
  * \param graph   linked graph
  * \param howderek_graph_vertex   howderek_graph_vertex to add
  */
-int howderek_graph_delete(struct howderek_graph* graph, size_t id);
+int howderek_graph_delete(struct howderek_graph* graph, uint64_t id);
 
 /**
  * Push a howderek_graph_vertex to a graph
@@ -151,7 +151,7 @@ int howderek_graph_delete(struct howderek_graph* graph, size_t id);
  * \param data   pointer to data to store
  */
 struct howderek_graph_vertex* howderek_graph_add_vertex(struct howderek_graph* graph,
-                                                        size_t id, void* data);
+                                                        uint64_t id, void* data);
 
 /**
  * Adds an edge if only ids are known
@@ -161,8 +161,8 @@ struct howderek_graph_vertex* howderek_graph_add_vertex(struct howderek_graph* g
  * \param data   pointer to data to store
  */
 struct howderek_graph_edge* howderek_graph_add_edge_by_id(struct howderek_graph* graph,
-                                                               size_t begin,
-                                                               size_t end,
+                                                               uint64_t begin,
+                                                               uint64_t end,
                                                                double weight);
 
 /**
@@ -185,7 +185,7 @@ struct howderek_graph_edge* howderek_graph_add_edge(struct howderek_graph* graph
  * \param data   struct to copy
  * \param size   sizeof(*data)
  */
-void* howderek_graph_set_data(struct howderek_graph_vertex* vertex, void* data, size_t size);
+void* howderek_graph_set_data(struct howderek_graph_vertex* vertex, void* data, uint64_t size);
 
 /**
  * returns a string containing info about a vertex
