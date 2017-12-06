@@ -172,6 +172,25 @@ char world_is_adjacent(position_t start,
            && ((llabs(xdiff) + llabs(ydiff)) != 0));
 }
 
+/**
+ * Return 1 if goals exist
+ *
+ *\param world
+ *
+ * \return            1 if exists, 0 if not
+ */
+int __world_goals_exist(struct world* w)
+{
+    int i;
+    for(i = 0; i < NUMBER_OF_ROBOTS; i++)
+    {
+        if(world_at_position(w, (position_t)w->robots[i].goal->id) == NULL) {
+            return 0;
+        }
+    }
+
+    return 1;
+}
 
 /**
  * Run a simulation of the world
