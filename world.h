@@ -18,6 +18,7 @@ struct world {
     struct robot robots[NUMBER_OF_ROBOTS];
     uint32_t height;
     uint32_t width;
+    char** rawChars;
 };
 
 typedef union {
