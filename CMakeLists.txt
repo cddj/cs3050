@@ -13,8 +13,9 @@ add_library(howderek_graph "libhowderek/howderek_graph.c")
 
 add_library(world "world.c")
 add_library(robot "robot.c")
-add_library(loader "loader.c")
 add_library(ui "ui.c")
 
 add_executable("robotpath" "main.c")
-target_link_libraries("robotpath" howderek howderek_memory howderek_array howderek_heap howderek_skiplist howderek_hashmap howderek_kv howderek_graph world robot loader ui)
+add_executable("testUI" "testUI.c")
+target_link_libraries("robotpath" howderek howderek_memory howderek_array howderek_heap howderek_skiplist howderek_hashmap howderek_kv howderek_graph world robot ui)
+target_link_libraries("testUI" howderek howderek_memory howderek_array howderek_heap howderek_skiplist howderek_hashmap howderek_kv howderek_graph world robot ui)

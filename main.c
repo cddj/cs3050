@@ -9,7 +9,6 @@
 #include "libhowderek/howderek.h"
 #include "world.h"
 #include "robot.h"
-#include "loader.h"
 #include "ui.h"
 
 /* main
@@ -32,26 +31,26 @@
 int main(void)
 {
     struct world* test = world_let_there_be_light(90);
-    position_t* tmp;
     int i;
     for (i = 1; i < 11; i++) {
-        position_t tmp;
-        tmp.coordinates.x = i;
-        tmp.coordinates.y = 0;
-        world_add(test, tmp);
+      position_t tmp;
+      tmp.coordinates.x = i;
+      tmp.coordinates.y = 0;
+      world_add(test, tmp);
     }
-
-    position_t* start = malloc(sizeof(position_t));
-    position_t* end = malloc(sizeof(position_t));
-    start->coordinates.x = 1;
-    start->coordinates.y = 0;
-    end->coordinates.x = 10;
-    end->coordinates.y = 0;
+    position_t start;
+    position_t end;
+    start.coordinates.x = 1;
+    start.coordinates.y = 0;
+    end.coordinates.x = 10;
+    end.coordinates.y = 0;
     struct pathfinding_data* list;
-    list = find_distance(test->graph, world_at_position(test, *start), world_at_position(test, *end));
+    list = find_distance(test->graph, world_at_position(test, start), world_at_position(test, end));
     while (list != NULL) {
-      position_t *pos = list->v->data;
-      printf("x: %u, y: %u", pos->coordinates.x, pos->coordinates.y);
+      position_t pos;
+      pos.bits = list->v->id;
+      printf("x: %u, y: %u\n", pos.coordinates.x, pos.coordinates.y);
+      list = list->next;
     }
 
     return 0;

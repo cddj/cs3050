@@ -59,10 +59,11 @@ int __calc_heuristic (struct howderek_graph_vertex* v1, struct howderek_graph_ve
 }
 
 int __is_goal (struct howderek_graph_vertex* v1, struct howderek_graph_vertex* goal) {
-    position_t* v1Pos = v1->data;
-    position_t* goalPos = goal->data;
-    if(v1Pos->coordinates.x == goalPos->coordinates.x && v1Pos->coordinates.y == goalPos->coordinates.y)
-    {
+    position_t v1Pos;
+    v1Pos.bits = v1->id;
+    position_t goalPos;
+    goalPos.bits = goal->id;
+    if (v1Pos.coordinates.x == goalPos.coordinates.x && v1Pos.coordinates.y == goalPos.coordinates.y) {
         return 1;
     }
     return 0;
@@ -86,7 +87,8 @@ struct pathfinding_data* find_distance (struct howderek_graph* g, struct howdere
 
     howderek_heap_push(openList, start);
 
-    while ((curr = howderek_heap_pop(openList))) {
+    while (openList->store->size != 0) {
+        curr = howderek_heap_pop(openList);
 
         if (closedListEnd != NULL) {
             closedListEnd->next = curr;

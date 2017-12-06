@@ -12,8 +12,6 @@
 #include "libhowderek/howderek_kv.h"
 
 
-
-
 /*!
  *
  *  1. Print to console the steps taken by the robots in the world. One by one.
