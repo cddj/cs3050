@@ -17,7 +17,7 @@ struct pathfinding_data {
     uint64_t distance;
     uint64_t heuristicDistance;
     uint64_t sumOfDistances;
-    struct howderek_graph_vertex* next;
+    struct pathfinding_data* next;
     struct howderek_graph_vertex* v;
 };
 
